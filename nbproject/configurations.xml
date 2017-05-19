@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="97">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>CDataSequenceIndex.h</itemPath>
+      <itemPath>CFastaInfo.h</itemPath>
+      <itemPath>CMemoryMappedFile.h</itemPath>
+      <itemPath>CProgress.h</itemPath>
+      <itemPath>CTFastaInfo.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>CDataSequenceIndex.cpp</itemPath>
+      <itemPath>CFastaInfo.cpp</itemPath>
+      <itemPath>CMemoryMappedFile.cpp</itemPath>
+      <itemPath>CProgress.cpp</itemPath>
+      <itemPath>CTFastaInfo.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <commandLine>-std=c++11</commandLine>
+        </ccTool>
+        <linkerTool>
+          <commandLine>-lboost_iostreams</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="CDataSequenceIndex.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CDataSequenceIndex.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CFastaInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CFastaInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CMemoryMappedFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CMemoryMappedFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CProgress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CProgress.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CTFastaInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CTFastaInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <commandLine>-std=c++11 -O3</commandLine>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <commandLine>-lboost_iostreams</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="CDataSequenceIndex.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CDataSequenceIndex.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CFastaInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CFastaInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CMemoryMappedFile.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CMemoryMappedFile.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CProgress.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CProgress.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CTFastaInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CTFastaInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

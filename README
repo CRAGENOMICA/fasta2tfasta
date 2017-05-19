@@ -1,0 +1,28 @@
+fasta2tfasta: File format conversor.
+
+
+Building fasta2tfasta
+=====================
+
+The typical simple case of building fasta2tfasta is done as follows:
+
+    cd .../fasta2tfasta    # Within the unpacked release directory
+    ./configure
+    make all
+
+You may wish to copy the resulting fasta2tfasta executable into somewhere on your
+$PATH, or run it where it is.
+
+Rather than running-in-place like that, the next simplest typical case is to
+install fasta2tfasta into a directory of your choosing. It, is done as follows:
+
+    cd .../fasta2tfasta    # Within the unpacked release directory
+    ./configure --prefix=/path/to/location
+    make all
+
+You will likely wish to add /path/to/location/bin to your $PATH.
+
+See INSTALL for full building and installation instructions and details.
+
+
+

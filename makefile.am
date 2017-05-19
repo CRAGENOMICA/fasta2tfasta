@@ -1,0 +1,28 @@
+AUTOMAKE_OPTIONS = foreign
+bin_PROGRAMS = fasta2tfasta
+fasta2tfasta_SOURCES = \
+               main.cpp \
+               CDataSequenceIndex.cpp \
+               CFastaInfo.cpp \
+               CMemoryMappedFile.cpp \
+               CProgress.cpp \
+               CTFastaInfo.cpp
+
+fasta2tfastadir = $(includedir)
+
+fasta2tfasta_HEADERS = \
+               CDataSequenceIndex.h \
+               CFastaInfo.h \
+               CMemoryMappedFile.h \
+               CProgress.h \
+               CTFastaInfo.h
+
+
+fasta2tfasta_CPPFLAGS = \
+               -std=c++11 \
+               -O3 
+
+fasta2tfasta_LDADD = \
+               /usr/lib64/libboost_iostreams.so
+
+
