@@ -5,10 +5,12 @@
  */
 
 /* 
- * File:   main.cpp
- * Author: Joan Jené
- *
- * Created on 21 de noviembre de 2016, 11:42
+ * File:    main.cpp
+ * Author:  Joan Jené
+ * Version: 1.2
+ * Created: 21 de noviembre de 2016, 11:42
+ * History: - 21/11/2016 Created.
+ *          - 24/
  */
 
 /*
@@ -32,22 +34,23 @@ using namespace std;
 #include "CMemoryMappedFile.h"
 #include "CDataSequenceIndex.h"
 
-std::string GetStringNumber(int64_t num, int digits) {
+std::string GetFirstColumnIDString(const std::string & chrom, int64_t num, int digits) {
   std::string ret = std::to_string((long long int)num);
   
   while (ret.length() < digits) {
     ret = "0" + ret;
   }
-        
+
+  ret = chrom + ":" + ret;
+  
   return ret;
 }
 
 int main(int argc, char** argv) {
- 
-  if (argc != 2) {
+  if (argc != 3) {
     std::cout << APP_INFO << std::endl
               << "syntax:" << std::endl
-              << "  fasta2tfasta file.fas" << std::endl;
+              << "  fasta2tfasta file.fas chrom_name" << std::endl;
   } else {
     CProgress progress;
 
@@ -55,6 +58,7 @@ int main(int argc, char** argv) {
     // adds ".tfa" to the input file name).
     std::string input_file_name = argv[1];
     std::string output_file_name = input_file_name + ".tfa";
+    std::string chrom = argv[2];
   
     // ===========================================================================
     // Open the fasta file as a memory mapped file and get its information.
@@ -64,14 +68,14 @@ int main(int argc, char** argv) {
     CFastaInfo fasta_info;
         
     if (fasta_info.GetFileInformation(input_file_name)) {
-
+  
       // =========================================================================
       // Let's go to create the TFasta memory mapped file with the input file 
       // information.
       // =========================================================================
 
       CTFastaInfo tfa_info;
-      if (tfa_info.OpenForWrite(output_file_name, &fasta_info)) {
+      if (tfa_info.OpenForWrite(output_file_name, &fasta_info, chrom)) {
         // Get a pointer to the start of the output tfasta file.
         char *tfasta = tfa_info.GetFirstReservedPosition();
 
@@ -102,7 +106,8 @@ int main(int argc, char** argv) {
         
         // Here, we get the first line number as an string of a fixed number of digits
         int64_t current_data_line_number = 1;
-        std::string data_line_number = GetStringNumber(current_data_line_number,
+        std::string data_line_number = GetFirstColumnIDString(chrom,
+                                                       current_data_line_number,
                                                        tfa_info.id_digits());
                 
        
@@ -120,9 +125,9 @@ int main(int argc, char** argv) {
         
         // This variable has the number of output T-Fasta number of columns
         // For example:
-        //   000001\tTAGGCGA.............AGCCCTT
+        //   chrom1:000001\tTAGGCGA.............AGCCCTT
         // 
-        int64_t num_columns = tfa_info.id_digits() + 1 + fasta_info.GetNumSequences();
+        int64_t num_columns = data_line_number.length() /*tfa_info.id_digits()*/ + 1 + fasta_info.GetNumSequences();
         
         // This variable has the current column number of the output T-Fasta file
         int64_t current_column_number = 0;
@@ -141,13 +146,13 @@ int main(int argc, char** argv) {
         // The T-Fasta file will be loop sequentially from the first byte to the last one:
         for(tfasta = start_position; tfasta < tfa_info.GetLastReservedPosition(); tfasta++) {
 
-          if (current_column_number < tfa_info.id_digits()) {
+          if (current_column_number < data_line_number.length() /*tfa_info.id_digits()*/) {
             // ID
             // **
             *tfasta = data_line_number.at(current_column_number);
             current_column_number++;                         
           } else {
-            if (current_column_number < tfa_info.id_digits() + 1) {
+            if (current_column_number < data_line_number.length() /*tfa_info.id_digits()*/ + 1) {
               // TAB
               // ***
               *tfasta = '\t';
@@ -209,7 +214,8 @@ int main(int argc, char** argv) {
                               
                 // Here, we get the next line number as an string of a fixed number of digits
                 current_data_line_number++;
-                data_line_number = GetStringNumber(current_data_line_number,
+                data_line_number = GetFirstColumnIDString(chrom,
+                                                   current_data_line_number,
                                                    tfa_info.id_digits());
               }
             }

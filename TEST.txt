@@ -1,0 +1,4 @@
+g++ -L/usr/include -std=c++11 *.cpp -lboost_iostreams -o ./fasta2tfasta
+valgrind ./fasta2tfasta ./data/gorilla.fas chr1
+cat ./data/gorilla.fas.tfa
+

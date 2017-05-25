@@ -86,8 +86,7 @@ class CMemoryMappedFile
     file_name_ = file_name;
     
     try {
-      source_data_ = new boost::iostreams::mapped_file_source(
-                                                            file_name_.c_str());
+      source_data_ = new boost::iostreams::mapped_file_source(file_name_.c_str());
       is_open_ = true;
     }
     catch(...) {

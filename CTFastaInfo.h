@@ -56,7 +56,7 @@ class CTFastaInfo : public CMemoryMappedFile
   }
   
  
-  bool OpenForWrite(const std::string & file_name, CFastaInfo *fasta_info) {
+  bool OpenForWrite(const std::string & file_name, CFastaInfo *fasta_info, const std::string & chrom_name) {
     rows_               = fasta_info->bases();
     columns_            = fasta_info->GetNumSequences();
     descriptions_size_  = fasta_info->descriptions().length();
@@ -69,7 +69,7 @@ class CTFastaInfo : public CMemoryMappedFile
                   + descriptions_size()  // this size has the EOL char
                   + header_title_.length()
                   + ((columns() + 2) * rows()) // +2 because of the end of line (\n) and the tabulator (\t) separator of the two columns.
-                  + (id_digits() * rows());  
+                  + ((id_digits() + 1 + chrom_name.length() ) * rows());  // For example: "0001:chr1"
     
     CMemoryMappedFile::OpenForWrite(file_name, new_file_size);
     
